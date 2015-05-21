@@ -16,3 +16,19 @@ bool rapid_emitter::emitRapidFile(const std::string& filename,
   // write any footers including main procedure calling the above
   return false;
 }
+
+bool rapid_emitter::emitJointPosition(std::ostream& os, const TrajectoryPt& pt, size_t n)
+{
+  os << "TASK PERS jointtarget jTarget_" << n << ":=[[";
+    for (size_t i = 0; i < pt.positions_.size() ; i++)
+    {
+      os << pt.positions_[i];
+      if (i < pt.positions_.size()-1)
+      {
+        os << ",";
+      }
+    }
+    
+  os << "],[9E9,9E9,9E9,9E9,9E9,9E9]];\n";
+  return true;
+} 
