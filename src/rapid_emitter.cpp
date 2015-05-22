@@ -1,35 +1,34 @@
 #include "rapid_emitter/rapid_emitter.h"
 
 #include <iostream>
-#include <fstream>
 
-bool rapid_emitter::emitRapidFile(const std::string& filename,
-                                 const std::vector<TrajectoryPt>& points,
-                                 size_t lengthFreeMotion,
-                                 const ProcessParams& params)
+bool rapid_emitter::emitRapidFile(std::ostream& os,
+                                  const std::vector<TrajectoryPt>& points,
+                                  size_t lengthFreeMotion,
+                                  const ProcessParams& params)
 {
   // Write header
-  std::cout << "MODULE mGodel_Blend\n\n";
+  os << "MODULE mGodel_Blend\n\n";
   // Emit all of the joint points
   for (std::size_t i = 0; i < points.size(); ++i)
   {
-    emitJointPosition(std::cout, points[i], i);
+    emitJointPosition(os, points[i], i);
   }
   // Write beginning of procedure
-  std::cout << "\nPROC TestProc()\n";
+  os << "\nPROC TestProc()\n";
   // For 0 to lengthFreeMotion, emit free moves
   for (std::size_t i = 0; i < lengthFreeMotion; ++i)
   {
-    emitFreeMotion(std::cout, params, i);
+    emitFreeMotion(os, params, i);
   }
   // for lengthFreeMotion to end of points, emit grind moves
   for (std::size_t i = lengthFreeMotion; i < points.size(); ++i)
   {
-    emitGrindMotion(std::cout, params, i);
+    emitGrindMotion(os, params, i);
   }
-  std::cout << "EndProc\n";
+  os << "EndProc\n";
   // write any footers including main procedure calling the above
-  std::cout << "ENDMODULE";
+  os << "ENDMODULE";
   return true;
 }
 

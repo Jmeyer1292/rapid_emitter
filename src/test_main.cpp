@@ -1,4 +1,5 @@
 #include "rapid_emitter/rapid_emitter.h"
+#include <iostream>
 
 std::vector<TrajectoryPt> makeFakeTrajectory()
 {
@@ -25,5 +26,5 @@ int main()
   ProcessParams params = makeFakeParams();
   size_t lengthFreeMotion = 2;
 
-  rapid_emitter::emitRapidFile("testfile.rapid", pts, lengthFreeMotion, params);
+  rapid_emitter::emitRapidFile(std::cout, pts, lengthFreeMotion, params);
 }

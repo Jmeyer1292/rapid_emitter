@@ -12,7 +12,7 @@ namespace rapid_emitter
   bool emitGrindMotion(std::ostream& os, const ProcessParams& params, size_t n);
   bool emitFreeMotion(std::ostream& os, const ProcessParams& params, size_t n);
 
-  bool emitRapidFile(const std::string& filename,
+  bool emitRapidFile(std::ostream& os,
                      const std::vector<TrajectoryPt>& points,
                      size_t lengthFreeMotion,
                      const ProcessParams& params);
