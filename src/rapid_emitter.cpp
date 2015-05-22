@@ -16,7 +16,7 @@ bool rapid_emitter::emitRapidFile(const std::string& filename,
     emitJointPosition(std::cout, points[i], i);
   }
   // Write beginning of procedure
-  std::cout << "\nPROC TestProc()";
+  std::cout << "\nPROC TestProc()\n";
   // For 0 to lengthFreeMotion, emit free moves
   for (std::size_t i = 0; i < lengthFreeMotion; ++i)
   {
@@ -27,7 +27,7 @@ bool rapid_emitter::emitRapidFile(const std::string& filename,
   {
     emitGrindMotion(std::cout, params, i);
   }
-  std::cout << "EndProc";
+  std::cout << "EndProc\n";
   // write any footers including main procedure calling the above
   std::cout << "ENDMODULE";
   return true;

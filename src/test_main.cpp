@@ -3,6 +3,12 @@
 std::vector<TrajectoryPt> makeFakeTrajectory()
 {
   std::vector<TrajectoryPt> points;
+  std::vector<double> dummy(6, 0.0);
+  TrajectoryPt pt (dummy);
+  for (std::size_t i = 0; i < 10; i ++)
+  {
+    points.push_back(pt);
+  }
   return points;
 }
 
@@ -17,7 +23,7 @@ int main()
 {
   std::vector<TrajectoryPt> pts = makeFakeTrajectory();
   ProcessParams params = makeFakeParams();
-  size_t lengthFreeMotion = 10;
+  size_t lengthFreeMotion = 2;
 
   rapid_emitter::emitRapidFile("testfile.rapid", pts, lengthFreeMotion, params);
 }
