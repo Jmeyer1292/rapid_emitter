@@ -2,6 +2,7 @@
 #define TEST_DATA_STRUCTURES_H
 
 #include <vector>
+#include <string>
 
 struct TrajectoryPt
 {
@@ -19,6 +20,9 @@ struct ProcessParams
   double spindle_speed;
   double tcp_speed;
   double force;
+  std::string output_name;
+  bool wolf;
+  double slide_force;
 };
 
 #endif

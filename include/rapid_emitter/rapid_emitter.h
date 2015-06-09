@@ -9,12 +9,15 @@
 namespace rapid_emitter
 {
   bool emitJointPosition(std::ostream& os, const TrajectoryPt& pt, size_t n);
-  bool emitGrindMotion(std::ostream& os, const ProcessParams& params, size_t n);
-  bool emitFreeMotion(std::ostream& os, const ProcessParams& params, size_t n);
+  bool emitGrindMotion(std::ostream& os, const ProcessParams& params, size_t n, bool start = false, bool end = false);
+  bool emitFreeMotion(std::ostream& os, const ProcessParams& params, size_t n, bool start = false, bool end = false);
+  bool emitSetOutput(std::ostream& os, const ProcessParams& params, size_t value);
+  bool emitProcessDeclarations(std::ostream& os, const ProcessParams& params, size_t value);
 
   bool emitRapidFile(std::ostream& os,
                      const std::vector<TrajectoryPt>& points,
-                     size_t lengthFreeMotion,
+                     size_t startProcessMotion,
+                     size_t endProcessMotion,
                      const ProcessParams& params);
 }
 

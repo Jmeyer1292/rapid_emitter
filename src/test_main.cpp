@@ -16,15 +16,19 @@ std::vector<TrajectoryPt> makeFakeTrajectory()
 ProcessParams makeFakeParams()
 {
   ProcessParams params;
-  params.spindle_speed = 1.0;
+  params.spindle_speed = 2000.0;
   params.tcp_speed = 100.0;
+  params.slide_force = 10;
+  params.output_name = "doTestOutput";
+  params.wolf = false;
   return params;
 }
 int main()
 {
   std::vector<TrajectoryPt> pts = makeFakeTrajectory();
   ProcessParams params = makeFakeParams();
-  size_t lengthFreeMotion = 2;
+  size_t startProcessMotion = 2;
+  size_t endProcessMotion = 6;
 
-  rapid_emitter::emitRapidFile(std::cout, pts, lengthFreeMotion, params);
+  rapid_emitter::emitRapidFile(std::cout, pts, startProcessMotion, endProcessMotion, params);
 }
