@@ -16,7 +16,7 @@ bool rapid_emitter::emitRapidFile(std::ostream& os,
     emitJointPosition(os, points[i], i);
   }
   // Emit Process Declarations
-  emitProcessDeclarations(os, params, 0);
+  emitProcessDeclarations(os, params, 1);
   // Write beginning of procedure
   os << "\nPROC TestProc()\n";
   // For 0 to lengthFreeMotion, emit free moves
@@ -127,6 +127,7 @@ bool rapid_emitter::emitSetOutput(std::ostream& os, const ProcessParams& params,
 {
   if (params.wolf == false)
   {
+    os << "WaitTime\\InPos, 0.01;\n";
     os << "SETDO " << params.output_name << ", " << value << ";\n";
   }
   return os.good();
